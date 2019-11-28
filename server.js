@@ -8,6 +8,8 @@ if (!port) {
   process.exit(1);
 }
 
+let sessions = {};
+
 var server = http.createServer(function(request, response) {
   var parsedUrl = url.parse(request.url, true);
   var pathWithQuery = request.url;
@@ -23,7 +25,10 @@ var server = http.createServer(function(request, response) {
 
   if (path === "/") {
     let string = fs.readFileSync("./index.html", "utf8");
-    let cookies = request.headers.cookie.split("; ");
+    let cookies = "";
+    if (request.headers.cookie) {
+      cookies = request.headers.cookie.split("; ");
+    }
     let hash = {};
     for (let i = 0; i < cookies.length; i++) {
       let parts = cookies[i].split("=");
@@ -31,8 +36,13 @@ var server = http.createServer(function(request, response) {
       let value = parts[1];
       hash[key] = value;
     }
-    let email = hash.sign_in_email;
-    let users = fs.readFileSync("./db/uesrs", "utf8");
+    let mySession = sessions[hash.sessionId];
+    let email;
+    if (mySession) {
+      email = mySession.sign_in_email;
+    }
+    // 上面这段话是重点
+    let users = fs.readFileSync("./db/users", "utf8");
     users = JSON.parse(users);
     let foundUser;
     for (let i = 0; i < users.length; i++) {
@@ -70,6 +80,7 @@ var server = http.createServer(function(request, response) {
         let key = parts[0];
         let value = parts[1];
         hash[key] = decodeURIComponent(value);
+        // url里面不能有@，如果有要用%40代替，所有为了判断邮箱里是否有@，需要使用上面的这个API把%40转换成@
       });
       let { email, password, password_confirmation } = hash;
       // 声明三个变量，将hash中与这三个变量名相同的key的value值赋给这三个变量
@@ -103,11 +114,12 @@ var server = http.createServer(function(request, response) {
         if (inUse) {
           response.statusCode = 400;
           response.write("email in use");
+        } else {
+          users.push({ email: email, password: password });
+          var usersString = JSON.stringify(users);
+          fs.writeFileSync("./db/users", usersString);
+          response.statusCode = 200;
         }
-        users.push({ email: email, password: password });
-        var usersString = JSON.stringify(users);
-        fs.writeFileSync("./db/users", usersString);
-        response.statusCode = 200;
       }
       response.end();
     });
@@ -121,17 +133,13 @@ var server = http.createServer(function(request, response) {
     readBody(request).then(body => {
       let strings = body.split("&");
       let hash = {};
-      strings.forEach(strings => {
-        let parts = strings.split("=");
+      strings.forEach(string => {
+        let parts = string.split("=");
         let key = parts[0];
         let value = parts[1];
         hash[key] = decodeURIComponent(value);
       });
       let { email, password } = hash;
-      console.log("email");
-      console.log(email);
-      console.log("password");
-      console.log(password);
       let users = fs.readFileSync("./db/users", "utf8");
       try {
         users = JSON.parse(users);
@@ -146,7 +154,9 @@ var server = http.createServer(function(request, response) {
         }
       }
       if (found) {
-        response.setHeader("Set-Cookie", `sign_in_email=${email}; HttpOnly`);
+        let sessionId = Math.random() * 100000;
+        sessions[sessionId] = { sign_in_email: email };
+        response.setHeader("Set-Cookie", `sessionId=${sessionId}`);
         // Set-Cookie: <cookie-name>=<cookie-value>
         response.statusCode = 200;
       } else {
