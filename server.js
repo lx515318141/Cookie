@@ -23,7 +23,22 @@ var server = http.createServer(function(request, response) {
 
   /******** 从这里开始看，上面不要看 ************/
 
-  if (path === "/") {
+  if(path === '/js/main.js'){
+    let string = fs.readFileSync("./js/main.js", "utf8");
+    response.setHeader("Content-Type", "application/javascript;charset=utf-8");
+    response.setHeader("Cache-Control", "max-age=30");
+    // 当这个js很大时，响应时间较长，使用Cache-Control可以将js的内容缓存，缓存时间由max-age决定，30表示30秒
+    // 当页面请求过js之后，浏览器会缓存js，当30秒内再次请求，浏览器会阻断请求，将自己缓存的js反馈给页面，这样可以有效缩短响应时间
+    // 如果过了30秒，则会再次请求，并再次缓存30秒
+    response.write(string);
+    response.end();
+  }else if(path === '/style.css'){
+    let string = fs.readFileSync("./style.css", "utf8");
+    response.setHeader("Content-Type", "text/css;charset=utf-8");
+    response.setHeader("Cache-Control", "max-age=30");
+    response.write(string);
+    response.end();
+  }else if (path === "/") {
     let string = fs.readFileSync("./index.html", "utf8");
     let cookies = "";
     if (request.headers.cookie) {
