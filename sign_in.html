@@ -3,32 +3,43 @@
 
 <head>
     <meta charset="UTF-8">
-    <link rel="stylesheet" href="./style.css">
+    <link rel="stylesheet" href="./css/sign_in.css">
     <title>登录</title>
-    
+
 </head>
 
 <body>
-    <div class="form-wrapper">
-        <h1>登录账号</h1>
-        <form id="signInForm">
-            <div class="row">
-                <label>邮箱</label>
-                <input type="text" name="email">
-                <span class="error"></span>
-            </div>
-            <div class="row">
-                <label>密码</label>
-                <input type="password" name="password">
-                <span class="error"></span>
-            </div>
-            <div class="row">
-                <input type="submit" value="登录">
-            </div>
-        </form>
-    </div>
+    <main class="main">
+        <img src="./img/p3.jpg">
+        <div class="form-wrapper">
+            <h1>欢迎来到狗狗之家！</h1>
+            <form class="signUpForm" id="signUpForm">
+                <div class="information">
+                    <div class="row">
+                        <label>邮箱</label>
+                        <span class="error"></span>
+                        <input type="text" name="email">
+                    </div>
+                    <div class="row">
+                        <label>密码</label>
+                        <span class="error"></span>
+                        <input type="password" name="password">
+                    </div>
+                    <div class="row">
+                        <img src="./img/logo1.png" alt="">
+                    </div>
+                </div>
+                <div class="last-row">
+                    <button id="sign_up" class="sign_up">注册</button>
+                    <input class="sign_in" type="submit" value="登录">
+                </div>
+            </form>
+        </div>
+    </main>
+    <footer></footer>
     <script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script>
-    <script>
+    <script src="./js/sign_in.js"></script>
+    <!-- <script>
         let $form = $('#signInForm')
         let hash = {}
         $form.on('submit', (e) => {
@@ -55,7 +66,7 @@
                 alert('邮箱或密码错误')
             })
         })
-    </script>
+    </script> -->
 </body>
 
 </html>

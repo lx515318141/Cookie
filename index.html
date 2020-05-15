@@ -4,11 +4,45 @@
 <head>
     <meta charset="UTF-8">
     <title>Document</title>
-    <link rel="stylesheet" href="./style.css">
+    <link rel="stylesheet" href="./css/index.css">
 </head>
 
 <body>
-    <h1>你的密码是：__password__</h1>
-    <script src="./js/main.js"></script>
+    <main class="main">
+        <img src="./img/p3.jpg">
+        <div class="form-wrapper">
+            <h1>你的注册信息</h1>
+            <form class="signUpForm" id="signUpForm">
+                <div class="information">
+                    <div class="row">
+                        你的邮箱：
+                        <br>
+                        <span>__email__</span>
+                    </div>
+                    <div class="row">
+                        你的你的密码：
+                        <span>__password__</span>
+                    </div>
+                    <div class="row">
+                        你的狗狗的昵称：
+                        <span>__username__</span>
+                    </div>
+                    <div class="row">
+                        你的狗狗的性别：
+                        <span>__gender__</span>
+                    </div>
+                    <div class="row">
+                        你的狗狗是否绝育：
+                        <span>__spayed__</span>
+                    </div>
+                </div>
+                <div class="last-row">
+                    <button id="sign_in" class="sign_in">返回</button>
+                </div>
+            </form>
+        </div>
+    </main>
+    <footer></footer>
+    <script src="./js/index.js"></script>
 </body>
 </html>

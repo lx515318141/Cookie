@@ -23,22 +23,7 @@ var server = http.createServer(function(request, response) {
 
   /******** 从这里开始看，上面不要看 ************/
 
-  if(path === '/js/main.js'){
-    let string = fs.readFileSync("./js/main.js", "utf8");
-    response.setHeader("Content-Type", "application/javascript;charset=utf-8");
-    response.setHeader("Cache-Control", "max-age=30");
-    // 当这个js很大时，响应时间较长，使用Cache-Control可以将js的内容缓存，缓存时间由max-age决定，30表示30秒
-    // 当页面请求过js之后，浏览器会缓存js，当30秒内再次请求，浏览器会阻断请求，将自己缓存的js反馈给页面，这样可以有效缩短响应时间
-    // 如果过了30秒，则会再次请求，并再次缓存30秒
-    response.write(string);
-    response.end();
-  }else if(path === '/style.css'){
-    let string = fs.readFileSync("./style.css", "utf8");
-    response.setHeader("Content-Type", "text/css;charset=utf-8");
-    response.setHeader("Cache-Control", "max-age=30");
-    response.write(string);
-    response.end();
-  }else if (path === "/") {
+  if (path === "/") {
     let string = fs.readFileSync("./index.html", "utf8");
     let cookies = "";
     if (request.headers.cookie) {
@@ -79,13 +64,7 @@ var server = http.createServer(function(request, response) {
     // 相应的第四部分
     response.end();
     // 相应结束
-  } else if (path === "/sign_up" && method === "GET") {
-    let string = fs.readFileSync("./sign_up.html", "utf8");
-    response.statusCode = 200;
-    response.setHeader("Content-Type", "text/html;charset=utf-8");
-    response.write(string);
-    response.end();
-  } else if (path === "/sign_up" && method === "POST") {
+  }else if (path === "/sign_up" && method === "POST") {
     readBody(request).then(body => {
       let strings = body.split("&");
       // 以&符合将body分割成多个数组及['email=1', 'password=2','password_confirmation']
@@ -97,7 +76,7 @@ var server = http.createServer(function(request, response) {
         hash[key] = decodeURIComponent(value);
         // url里面不能有@，如果有要用%40代替，所有为了判断邮箱里是否有@，需要使用上面的这个API把%40转换成@
       });
-      let { email, password, password_confirmation } = hash;
+      let { email, username, password, password_confirmation, gender, spayed } = hash;
       // 声明三个变量，将hash中与这三个变量名相同的key的value值赋给这三个变量
       if (email.indexOf("@") === -1) {
         response.statusCode = 400;
@@ -128,20 +107,23 @@ var server = http.createServer(function(request, response) {
         }
         if (inUse) {
           response.statusCode = 400;
+          response.setHeader('Access-Control-Allow-Origin','*')
           response.write("email in use");
         } else {
-          users.push({ email: email, password: password });
+          users.push({ email: email, username: username, password: password, gender: gender, spayed: spayed });
           var usersString = JSON.stringify(users);
           fs.writeFileSync("./db/users", usersString);
           response.statusCode = 200;
         }
       }
+      response.setHeader('Access-Control-Allow-Origin','*')
       response.end();
     });
   } else if (path === "/sign_in" && method === "GET") {
     let string = fs.readFileSync("./sign_in.html", "utf8");
     response.statusCode = 200;
     response.setHeader("Content-Type", "text/html;charset=utf-8");
+    response.setHeader('Access-Control-Allow-Origin','*')
     response.write(string);
     response.end();
   } else if (path === "/sign_in" && method === "POST") {
@@ -177,6 +159,7 @@ var server = http.createServer(function(request, response) {
       } else {
         response.statusCode = 401;
       }
+      response.setHeader('Access-Control-Allow-Origin','*')
       response.end();
     });
   } else if (path === "/main.js") {

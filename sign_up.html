@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="UTF-8">
-    <link rel="stylesheet" href="./style.css">
+    <link rel="stylesheet" href="./css/sign_up.css">
     <title>注册账号</title>
 
 </head>
@@ -16,34 +16,42 @@
                 欢迎加入我们！</h1>
             <form class="signUpForm" id="signUpForm">
                 <div class="information">
-                    <div class="first-row">
+                    <div class="row">
                         <div class="em">
                             <label>邮箱</label>
-                            <input type="text" name="email">
                             <span class="error"></span>
+                            <input type="text" name="email">
                         </div>
                         <div class="un">
-                            <label>昵称</label>
-                            <input type="text" name="username">
+                            <label>狗狗昵称</label>
                             <span class="error"></span>
+                            <input type="text" name="username">
                         </div>
                     </div>
 
-                    <div class="second-row">
+                    <div class="row">
                         <div class="pw">
                             <label>密码</label>
-                            <input type="password" name="password">
                             <span class="error"></span>
+                            <input type="password" name="password">
                         </div>
                         <div class="pwc">
                             <label>确认密码</label>
-                            <input type="password" name="password_confirmation">
                             <span class="error"></span>
+                            <input type="password" name="password_confirmation">
                         </div>
                     </div>
-                    <div class="third-row">
-                        <label>性别</label>
-                        <input type="radio" name="gender">
+                    <div class="row">
+                        <div class="gd">
+                            <label>性别</label>
+                            <span class="error"></span>
+                            <input type="text" name="gender">
+                        </div>
+                        <div class="sn">
+                            <label>是否绝育</label>
+                            <span class="error"></span>
+                            <input type="text" name="spayed">
+                        </div>
                     </div>
                 </div>
                 <div class="last-row">
@@ -55,50 +63,7 @@
     </main>
     <footer></footer>
     <script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script>
-    <script>
-        let $form = $('#signUpForm')
-        let hash = {}
-        $form.on('submit', (e) => {
-            e.preventDefault();
-            let need = ['email', 'password', 'password_confirmation']
-            need.forEach((name) => {
-                let value = $form.find(`[name=${name}]`).val()
-                hash[name] = value
-            })
-            $form.find('.error').each((index, span) => {
-                $(span).text('')
-            })
-            if (hash['email'] === '') {
-                $form.find(`[name="email"]`).siblings('.error').text('邮箱不能为空')
-                return
-            }
-            if (hash['password'] === '') {
-                $form.find(`[name="password"]`).siblings('.error').text('密码不能为空')
-                return
-            }
-            if (hash['password_confirmation'] === '') {
-                $form.find(`[name="password_confirmation"]`).siblings('.error').text('请确认密码')
-                return
-            }
-            if (hash['password_confirmation'] !== hash['password']) {
-                $form.find(`[name="password_confirmation"]`).siblings('.error').text('两次密码不一致')
-                return
-            }
-            $.post('/sign_up', hash).then((response) => {
-                window.location.href('/sign_in')
-            }, (request) => {
-                if (request.responseText === 'email in use') {
-                    alert('邮箱已存在')
-                }
-                let { errors } = request.responseJSON
-                if (errors.email && errors.email === 'invalid') {
-                    $form.find(`[name="email"]`).siblings('.error').text('邮箱格式错误')
-                }
-
-
-            })
-        })
-    </script>
+    <script src="./js/sign_up.js"></script>
 </body>
 
 </html>

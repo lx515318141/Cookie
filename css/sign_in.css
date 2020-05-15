@@ -39,7 +39,6 @@ body {
     text-align: center;
 }
 
-
 .form-wrapper .signUpForm{
     display: flex;
     flex-direction: column;
@@ -48,77 +47,69 @@ body {
 
 .form-wrapper .information{
     flex-grow: 1;
-    margin-left: 72px;
+    margin-top: 20px;
+    margin-left: 120px;
     display: flex;
     flex-direction: column;
 }
 
-.form-wrapper .information .first-row,
-.form-wrapper .information .second-row{
-    display: flex;
-}
-.form-wrapper .information .second-row,.third-row{
-    margin-top: 10px;
-}
-.form-wrapper .information .third-row{
+.form-wrapper .information .row{
     display: flex;
     flex-direction: column;
-
+    position: relative;
 }
-.form-wrapper .information .third-row label:nth-child(2),
-.form-wrapper .information .third-row label:nth-child(3){
-    border: 1px solid red;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+.form-wrapper .information .row:nth-child(2){
+    margin-top: 25px;
 }
-
-.form-wrapper .information .em,.un,.pw,.pwc{
-    display: flex;
-    flex-direction: column;
-}
-.form-wrapper .information .un,.pwc{
-    margin-left: 20px;
-}
-
-.form-wrapper .information label {
+.form-wrapper .information .row label {
     font-size: 14px;
     width: 4em;
     color: #BBB7BC;
 }
-.form-wrapper .information input{
+.form-wrapper .information .row input{
     border: none;
     outline: none;
     height: 30px;
-    width: 160px;
-    margin: 6px 0;
+    width: 180px;
+    margin: 10px 0;
 }
-
-
+.form-wrapper .information .row span{
+    position: absolute;
+    left: 30px;
+    color: red;
+    font-size: 4px;
+}
+.form-wrapper .information .row img{
+    width: 90px;
+    margin-top: 20px;
+    margin-left: 40px;
+}
 .form-wrapper .last-row{
     width: 100%;
-    height: 72px;
+    height: 62px;
     background: white;
     border-radius: 0 0 15px 0;
 }
-.form-wrapper .last-row .back,
-.form-wrapper .last-row .sign_up
-{
+.form-wrapper .last-row .sign_in,
+.form-wrapper .last-row .sign_up{
     border: 1px solid #C7C7CC;
     border-radius: 30px;
-    margin-top: 20px;
+    margin-top: 15px;
     margin-left: 100px;
     padding: 6px 30px;
     color: #C7C7CC;
     font-size: 12px;
     background: white;
 }
-
+.form-wrapper .last-row .back:hover,
+.form-wrapper .last-row .sign_up:hover{
+    background: #555871;
+}
 footer{
     position: absolute;
     z-index: -1;
     width: 100%;
-    height: 140px;
+    height: 130px;
     background: #F6E6E6;
     bottom: 0;
 }
