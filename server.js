@@ -156,6 +156,7 @@ var server = http.createServer(function(request, response) {
         response.setHeader("Set-Cookie", `sessionId=${sessionId}`);
         // Set-Cookie: <cookie-name>=<cookie-value>
         response.statusCode = 200;
+        
       } else {
         response.statusCode = 401;
       }
@@ -168,24 +169,13 @@ var server = http.createServer(function(request, response) {
     response.setHeader("Content-Type", "text/javascript;charset=utf-8");
     response.write(string);
     response.end();
-  } else if (path === "/xxx") {
+  } else if (path === "/css/sign_in.css") {
+    let string = fs.readFileSync("./css/sign_in.css", "utf8");
     response.statusCode = 200;
-    response.setHeader("Content-Type", "text/xml;charset=utf-8");
-    response.setHeader("Access-Control-Allow-Origin", "http://xxxxxxxxx");
-    // CORS 跨站资源共享，允许另一个网站发送AJAX请求，'http://xxxxxxx'为允许的那个网站的网址
-    // 如果网址用*号代替，表示允许所有网址发送AJAX请求
-    response.write(`
-    {
-        note{
-            "to": "小刘"
-            "from": "小李"
-            "heading": "打招呼"
-            "content": "hello"
-        }
-    }
-    `);
+    response.setHeader("Content-Type", "text/css; charset=utf-8");
+    response.write(string);
     response.end();
-  } else {
+  }else {
     response.statusCode = 404;
     response.setHeader("Content-Type", "text/html;charset=utf-8");
     response.write("呜呜呜");

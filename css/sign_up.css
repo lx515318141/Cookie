@@ -4,6 +4,7 @@
     padding: 0;
     box-sizing: border-box;
 }
+ul,ol,li{list-style: none;}
 
 body {
     position: relative;
@@ -90,6 +91,29 @@ body {
 .form-wrapper .information .row .pwc span,
 .form-wrapper .information .row .un span{
     left: 50px;
+}
+.form-wrapper .information .row ul{
+    display: flex;
+    background: white;
+    height: 30px;
+    width: 160px;
+    margin: 10px 0;
+    padding: 5px;
+}
+.form-wrapper .information .row li{
+    font-size: 4px;
+    color: #737385;
+    padding: 0 30px;
+    padding-top: 2px;
+}
+.form-wrapper .information .row li:hover{
+    cursor:pointer
+}
+.form-wrapper .information .row li:nth-child(2){
+    margin-left: 4px;
+}
+.form-wrapper .information .row li.active{
+    background: #ECD0CF;
 }
 .form-wrapper .last-row{
     width: 100%;

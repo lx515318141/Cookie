@@ -1,6 +1,6 @@
 {
     let view = {
-        el: '#signInForm',
+        el: '#signUpForm',
         init(){
             this.$el = $(this.el)
         }
@@ -44,8 +44,8 @@
                 })
             })
             this.view.$el.find('#sign_up').on('click', (e)=>{
-                alart('1')
-                window.location.href('http://127.0.0.1:8080/sign_up.html')
+                console.log('1')
+                window.location.href = '/sign_up.html'
             })
         }
     }

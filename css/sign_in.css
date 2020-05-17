@@ -101,7 +101,7 @@ body {
     font-size: 12px;
     background: white;
 }
-.form-wrapper .last-row .back:hover,
+.form-wrapper .last-row .sign_in:hover,
 .form-wrapper .last-row .sign_up:hover{
     background: #555871;
 }

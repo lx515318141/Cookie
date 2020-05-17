@@ -45,12 +45,20 @@
                         <div class="gd">
                             <label>性别</label>
                             <span class="error"></span>
-                            <input type="text" name="gender">
+                            <ul class="gender">
+                                <li class="male active">男</li>
+                                <li class="female">女</li>
+                            </ul>
+                            <input type="hidden" name="gender">
                         </div>
                         <div class="sn">
                             <label>是否绝育</label>
                             <span class="error"></span>
-                            <input type="text" name="spayed">
+                            <ul class="spayed">
+                                <li class="yes active">是</li>
+                                <li class="no">否</li>
+                            </ul>
+                            <input type="hidden" name="spayed">
                         </div>
                     </div>
                 </div>
@@ -64,6 +72,7 @@
     <footer></footer>
     <script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script>
     <script src="./js/sign_up.js"></script>
+    
 </body>
 
 </html>
