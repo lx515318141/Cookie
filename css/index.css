@@ -26,55 +26,49 @@ body {
     height: 520px;
     border-radius: 15px 0 0 15px;
 }
-.form-wrapper {
+.wrapper {
     display: flex;
     min-width: 400px;
     flex-direction: column;
 }
 
-.form-wrapper h1{
+.wrapper h1{
     font-family: Microsoft JhengHei;
     color: #4D536D;
     margin: 40px 70px;
     text-align: center;
 }
 
-.form-wrapper .signUpForm{
+.wrapper{
     display: flex;
     flex-direction: column;
     flex-grow: 1;
 }
 
-.form-wrapper .information{
+.wrapper .information{
     flex-grow: 1;
     margin-left: 80px;
     display: flex;
     flex-direction: column;
 }
 
-.form-wrapper .information .row {
+.wrapper .information .row {
     display: flex;
     flex-direction: column;
+    color: #BBB7BC;
 }
-.form-wrapper .information .row span{
+.wrapper .information .row span{
     margin: 10px 0;
     font-size: 14px;
 }
-.form-wrapper .information .row .pwc span,
-.form-wrapper .information .row .un span{
-    left: 50px;
-}
-.form-wrapper .information .vt input{
-    width: 340px;
-}
-.form-wrapper .last-row{
+.wrapper .last-row{
     width: 100%;
     height: 62px;
     background: white;
     border-radius: 0 0 15px 0;
     text-align: center;
 }
-.form-wrapper .last-row .sign_in{
+.wrapper .last-row .sign_in{
     border: 1px solid #C7C7CC;
     border-radius: 30px;
     margin-top: 15px;
@@ -84,7 +78,7 @@ body {
     background: white;
 }
 
-.form-wrapper .last-row .sign_in:hover{
+.wrapper .last-row .sign_in:hover{
     background: #555871;
 }
 footer{

@@ -10,18 +10,18 @@
 
 <body>
     <main class="main">
-        <img src="./img/p3.jpg">
+        <img src="./img/p3.png">
         <div class="form-wrapper">
             <h1>欢迎来到狗狗之家！</h1>
             <form class="signUpForm" id="signUpForm">
                 <div class="information">
                     <div class="row">
-                        <label>邮箱</label>
+                        <label class="email">邮箱</label>
                         <span class="error"></span>
                         <input type="text" name="email">
                     </div>
                     <div class="row">
-                        <label>密码</label>
+                        <label class="password">密码</label>
                         <span class="error"></span>
                         <input type="password" name="password">
                     </div>
@@ -39,34 +39,6 @@
     <footer></footer>
     <script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script>
     <script src="./js/sign_in.js"></script>
-    <!-- <script>
-        let $form = $('#signInForm')
-        let hash = {}
-        $form.on('submit', (e) => {
-            e.preventDefault();
-            let need = ['email', 'password']
-            need.forEach((name) => {
-                let value = $form.find(`[name=${name}]`).val()
-                hash[name] = value
-            })
-            $form.find('.error').each((index, span) => {
-                $(span).text('')
-            })
-            if (hash['email'] === '') {
-                $form.find(`[name="email"]`).siblings('.error').text('邮箱不能为空')
-                return
-            }
-            if (hash['password'] === '') {
-                $form.find(`[name="password"]`).siblings('.error').text('密码不能为空')
-                return
-            }
-            $.post('/sign_in', hash).then((response) => {
-                window.location.href = '/'
-            }, (request) => {
-                alert('邮箱或密码错误')
-            })
-        })
-    </script> -->
 </body>
 
 </html>

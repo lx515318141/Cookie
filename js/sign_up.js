@@ -34,7 +34,7 @@
                 need.forEach((name) => {
                     let value = this.view.$el.find(`[name=${name}]`).val()
                     this.model.data[name] = value
-                    let value1 = this.view.$el.find(`[name=${name}]`).prev().prev().text()
+                    let value1 = this.view.$el.find(`[name=${name}]`).siblings('label').text()
                     hash[name] = value1
                 })
                 this.view.$el.find('.error').each((index, span) => {
@@ -55,27 +55,29 @@
                 }
                 this.model.sign_up(this.model.data)
                 .then((response) => {
-                        console.log('1')
-                        // window.location.href = '/sign_in.html'
-                        console.log(response)
-                    })
+                    alert('注册成功')
+                    window.location.href = '/sign_in'
+                    }, (request) => {
+                            if (request.responseText === 'email in use') {
+                                alert('邮箱已存在')
+                            }
+                            let { errors } = request.responseJSON
+                            if (errors.email && errors.email === 'invalid') {
+                                this.view.$el.find(`[name="email"]`).siblings('.error').text('邮箱格式错误')
+                            }
+                        })
                 // $.post('/sign_up', hash).then((response) => {
                 //     window.location.href('/sign_in')
-                // }, (request) => {
-                //     if (request.responseText === 'email in use') {
-                //         alert('邮箱已存在')
-                //     }
-                //     let { errors } = request.responseJSON
-                //     if (errors.email && errors.email === 'invalid') {
-                //         $form.find(`[name="email"]`).siblings('.error').text('邮箱格式错误')
-                //     }
-                // })
+                // }, )
             })
             this.view.$el.on('click', 'li', (e)=>{
                 this.view.activeItem(e.currentTarget)
                 let content = e.currentTarget.innerText
                 let className = e.currentTarget.parentElement.getAttribute('class')
                 this.view.$el.find(`[name=${className}]`).val(`${content}`)
+            })
+            this.view.$el.on('click', 'button', (e)=>{
+                window.location.href = '/sign_in'
             })
         }
     }

@@ -1,6 +1,6 @@
 {
     let view = {
-        el: '',
+        el: '.wrapper',
         init(){
             this.$el = $(this.el)
         }
