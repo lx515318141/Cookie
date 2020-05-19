@@ -1,9 +1,9 @@
-let baseMethod = require('./baseMethod.js')
+let base_method = require('./base_method.js')
 var fs = require("fs");
 
 module.exports = {
     handler:function(request, response, sessions){
-      baseMethod.readBody(request).then(body => {
+      base_method.readBody(request).then(body => {
             let strings = body.split("&");
             let hash = {};
             strings.forEach(string => {

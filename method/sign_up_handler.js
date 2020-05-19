@@ -1,9 +1,9 @@
-let baseMethod = require('./baseMethod.js')
+let base_method = require('./base_method.js')
 var fs = require("fs");
 
 module.exports = {
     handler:function(request, response){
-        baseMethod.readBody(request).then(body => {
+        base_method.readBody(request).then(body => {
             let strings = body.split("&");
             // 以&符合将body分割成多个数组及['email=1', 'password=2','password_confirmation']
             let hash = {};
