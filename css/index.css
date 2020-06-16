@@ -55,7 +55,7 @@ body {
 .wrapper .information .row {
     display: flex;
     flex-direction: column;
-    color: #BBB7BC;
+    color: #555871;
 }
 .wrapper .information .row span{
     margin: 10px 0;
@@ -69,17 +69,18 @@ body {
     text-align: center;
 }
 .wrapper .last-row .sign_in{
-    border: 1px solid #C7C7CC;
+    border: 1px solid #555871;
     border-radius: 30px;
     margin-top: 15px;
     padding: 6px 30px;
-    color: #C7C7CC;
+    color: #555871;
     font-size: 12px;
     background: white;
 }
 
 .wrapper .last-row .sign_in:hover{
     background: #555871;
+    color: white;
 }
 .wrapper .last-row .sign_in:focus{
     outline: none;

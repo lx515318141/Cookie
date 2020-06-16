@@ -66,9 +66,6 @@
                                 this.view.$el.find(`[name="email"]`).siblings('.error').text('邮箱格式错误')
                             }
                         })
-                // $.post('/sign_up', hash).then((response) => {
-                //     window.location.href('/sign_in')
-                // }, )
             })
             this.view.$el.on('click', 'li', (e)=>{
                 this.view.activeItem(e.currentTarget)

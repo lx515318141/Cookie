@@ -64,7 +64,7 @@ body {
 .form-wrapper .information .row label {
     font-size: 14px;
     width: 4em;
-    color: #BBB7BC;
+    color: #555871;
 }
 .form-wrapper .information .row input{
     border: none;
@@ -92,18 +92,19 @@ body {
 }
 .form-wrapper .last-row .sign_in,
 .form-wrapper .last-row .sign_up{
-    border: 1px solid #C7C7CC;
+    border: 1px solid #555871;
     border-radius: 30px;
     margin-top: 15px;
     margin-left: 100px;
     padding: 6px 30px;
-    color: #C7C7CC;
+    color: #555871;
     font-size: 12px;
     background: white;
 }
 .form-wrapper .last-row .sign_in:hover,
 .form-wrapper .last-row .sign_up:hover{
     background: #555871;
+    color: white;
 }
 .form-wrapper .last-row .sign_in:focus,
 .form-wrapper .last-row .sign_up:focus{
