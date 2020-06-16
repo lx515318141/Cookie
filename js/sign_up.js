@@ -77,6 +77,7 @@
                 this.view.$el.find(`[name=${className}]`).val(`${content}`)
             })
             this.view.$el.on('click', 'button', (e)=>{
+                e.preventDefault();
                 window.location.href = '/sign_in'
             })
         }

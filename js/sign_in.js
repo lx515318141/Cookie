@@ -1,6 +1,6 @@
 {
     let view = {
-        el: '#signUpForm',
+        el: '#signInForm',
         init(){
             this.$el = $(this.el)
         }
@@ -32,7 +32,6 @@
                     this.model.data[name] = value
                     hash[name] = this.view.$el.find(`[name=${name}]`).siblings('label').text()
                 })
-                console.log(hash)
                 this.view.$el.find('.error').each((index, span) => {
                     $(span).text('')
                 })
@@ -43,6 +42,7 @@
                 }
                 if (this.model.data['email'] === '') {
                     this.view.$el.find(`[name="email"]`).siblings('.error').text('邮箱不能为空')
+                    
                     return
                 }
                 if (this.model.data['password'] === '') {
@@ -57,7 +57,7 @@
                 })
             })
             this.view.$el.on('click', 'button', (e)=>{
-                console.log('1')
+                e.preventDefault();
                 window.location.href = '/sign_up'
             })
         }

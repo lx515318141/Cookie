@@ -136,6 +136,10 @@ body {
 .form-wrapper .last-row .sign_up:hover{
     background: #555871;
 }
+.form-wrapper .last-row .back:focus,
+.form-wrapper .last-row .sign_up:focus{
+    outline: none;
+}
 footer{
     position: absolute;
     z-index: -1;

@@ -81,6 +81,9 @@ body {
 .wrapper .last-row .sign_in:hover{
     background: #555871;
 }
+.wrapper .last-row .sign_in:focus{
+    outline: none;
+}
 footer{
     position: absolute;
     z-index: -1;

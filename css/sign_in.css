@@ -39,7 +39,7 @@ body {
     text-align: center;
 }
 
-.form-wrapper .signUpForm{
+.form-wrapper .signInForm{
     display: flex;
     flex-direction: column;
     flex-grow: 1;
@@ -104,6 +104,10 @@ body {
 .form-wrapper .last-row .sign_in:hover,
 .form-wrapper .last-row .sign_up:hover{
     background: #555871;
+}
+.form-wrapper .last-row .sign_in:focus,
+.form-wrapper .last-row .sign_up:focus{
+    outline: none;
 }
 footer{
     position: absolute;
